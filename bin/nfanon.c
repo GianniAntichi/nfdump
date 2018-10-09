@@ -115,61 +115,61 @@ int		i;
 	}
 
 	// Process optional extensions
-	i=0;
-	while ( extension_map->ex_id[i] ) {
-		switch (extension_map->ex_id[i++]) {
-			case EX_AS_2: // srcas/dstas 2 byte
-				master_record->srcas = 0;
-				master_record->dstas = 0;
-				break;
-			case EX_AS_4: // srcas/dstas 4 byte
-				master_record->srcas = 0;
-				master_record->dstas = 0;
-				break;
-			case EX_NEXT_HOP_v4:
-				master_record->ip_nexthop.V4 = anonymize(master_record->ip_nexthop.V4);
-				break;
-			case EX_NEXT_HOP_v6: {
-				uint64_t    anon_ip[2];
-				anonymize_v6(master_record->ip_nexthop.V6, anon_ip);
-				master_record->ip_nexthop.V6[0] = anon_ip[0];
-				master_record->ip_nexthop.V6[1] = anon_ip[1];
-				} break;
-			case EX_NEXT_HOP_BGP_v4: 
-				master_record->bgp_nexthop.V4 = anonymize(master_record->bgp_nexthop.V4);
-				break;
-			case EX_NEXT_HOP_BGP_v6: {
-				uint64_t    anon_ip[2];
-				anonymize_v6(master_record->bgp_nexthop.V6, anon_ip);
-				master_record->bgp_nexthop.V6[0] = anon_ip[0];
-				master_record->bgp_nexthop.V6[1] = anon_ip[1];
-				} break;
-			case EX_ROUTER_IP_v4:
-				master_record->ip_router.V4 = anonymize(master_record->ip_router.V4);
-				break;
-			case EX_ROUTER_IP_v6: {
-				uint64_t    anon_ip[2];
-				anonymize_v6(master_record->ip_router.V6, anon_ip);
-				master_record->ip_router.V6[0] = anon_ip[0];
-				master_record->ip_router.V6[1] = anon_ip[1];
-				} break;
-#ifdef NSEL
-			case EX_NSEL_XLATE_IP_v4:
-				master_record->xlate_src_ip.V4 = anonymize(master_record->xlate_src_ip.V4);
-				master_record->xlate_dst_ip.V4 = anonymize(master_record->xlate_dst_ip.V4);
-				break;
-			case EX_NSEL_XLATE_IP_v6: {
-				uint64_t    anon_ip[2];
-				anonymize_v6(master_record->xlate_src_ip.V6, anon_ip);
-				master_record->xlate_src_ip.V6[0] = anon_ip[0];
-				master_record->xlate_src_ip.V6[1] = anon_ip[1];
-				anonymize_v6(master_record->xlate_dst_ip.V6, anon_ip);
-				master_record->xlate_dst_ip.V6[0] = anon_ip[0];
-				master_record->xlate_dst_ip.V6[1] = anon_ip[1];
-				} break;
-#endif
-		}
-	}
+//	i=0;
+//	while ( extension_map->ex_id[i] ) {
+//		switch (extension_map->ex_id[i++]) {
+//			case EX_AS_2: // srcas/dstas 2 byte
+//				master_record->srcas = 0;
+//				master_record->dstas = 0;
+//				break;
+//			case EX_AS_4: // srcas/dstas 4 byte
+//				master_record->srcas = 0;
+//				master_record->dstas = 0;
+//				break;
+//			case EX_NEXT_HOP_v4:
+//				master_record->ip_nexthop.V4 = anonymize(master_record->ip_nexthop.V4);
+//				break;
+//			case EX_NEXT_HOP_v6: {
+//				uint64_t    anon_ip[2];
+//				anonymize_v6(master_record->ip_nexthop.V6, anon_ip);
+//				master_record->ip_nexthop.V6[0] = anon_ip[0];
+//				master_record->ip_nexthop.V6[1] = anon_ip[1];
+//				} break;
+//			case EX_NEXT_HOP_BGP_v4: 
+//				master_record->bgp_nexthop.V4 = anonymize(master_record->bgp_nexthop.V4);
+//				break;
+//			case EX_NEXT_HOP_BGP_v6: {
+//				uint64_t    anon_ip[2];
+//				anonymize_v6(master_record->bgp_nexthop.V6, anon_ip);
+//				master_record->bgp_nexthop.V6[0] = anon_ip[0];
+//				master_record->bgp_nexthop.V6[1] = anon_ip[1];
+//				} break;
+//			case EX_ROUTER_IP_v4:
+//				master_record->ip_router.V4 = anonymize(master_record->ip_router.V4);
+//				break;
+//			case EX_ROUTER_IP_v6: {
+//				uint64_t    anon_ip[2];
+//				anonymize_v6(master_record->ip_router.V6, anon_ip);
+//				master_record->ip_router.V6[0] = anon_ip[0];
+//				master_record->ip_router.V6[1] = anon_ip[1];
+//				} break;
+//#ifdef NSEL
+//			case EX_NSEL_XLATE_IP_v4:
+//				master_record->xlate_src_ip.V4 = anonymize(master_record->xlate_src_ip.V4);
+//				master_record->xlate_dst_ip.V4 = anonymize(master_record->xlate_dst_ip.V4);
+//				break;
+//			case EX_NSEL_XLATE_IP_v6: {
+//				uint64_t    anon_ip[2];
+//				anonymize_v6(master_record->xlate_src_ip.V6, anon_ip);
+//				master_record->xlate_src_ip.V6[0] = anon_ip[0];
+//				master_record->xlate_src_ip.V6[1] = anon_ip[1];
+//				anonymize_v6(master_record->xlate_dst_ip.V6, anon_ip);
+//				master_record->xlate_dst_ip.V6[0] = anon_ip[0];
+//				master_record->xlate_dst_ip.V6[1] = anon_ip[1];
+//				} break;
+//#endif
+//		}
+//	}
 
 } // End of AnonRecord
 
